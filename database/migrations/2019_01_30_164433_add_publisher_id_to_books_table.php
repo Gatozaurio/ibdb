@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSlugToBooksTable extends Migration
+class AddPublisherIdToBooksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddSlugToBooksTable extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('slug')->after('title')->unique();
+            $table->string('publisher_id')->after('user_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddSlugToBooksTable extends Migration
     public function down()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->dropColumn('slug');
+            $table-dropColumn('publisher_id');
         });
     }
 }
