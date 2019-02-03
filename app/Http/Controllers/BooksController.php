@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Publishers;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
+use App\Http\Requests\PublisherRequest;
 
 class BooksController extends Controller
 {
@@ -34,7 +36,10 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return view('public.books.create');
+		// $publishers = Publisher::all();
+
+        // return view('public.books.create', ['publishers' => $publishers]);
+		return view('public.books.create');
     }
 
     /**
@@ -47,6 +52,7 @@ class BooksController extends Controller
     {
         Book::create([
 			'user_id' =>  $request->user()->id,
+			'publisher_id' =>  $request->publisher()->id,
             'title' => request('title'),
             'slug' => str_slug(request('title'), "-"),
             'author' => request('author'),

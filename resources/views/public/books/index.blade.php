@@ -15,8 +15,7 @@
             {{ $book->title }}
         </div>
         <div class="card-body">
-			<h5 class="card-title">{{ $book->user->name }}</h5>
-			 <h5 class="card-title"><a href="{{ route('public.userbooks.index', $book->user->slug) }}" title="{{ $book->user->name }}'s book list">{{ $book->user->name }}</a></h5>
+			 <h5 class="card-title"><a href="/user/{{ $book->user->slug }}/books" title="{{ $book->user->name }}'s book list">{{ $book->user->name }}</a></h5>
             <h6 class="card-subtitle mb-2 text-muted">{{ $book->author}}</h6>
             <p class="card-text">{{ str_limit($book->description, 300) }}</p>
 
@@ -34,7 +33,7 @@
       </div>
     </div>
     @empty
-      <p>No hay libros</p>
+      <p>There aren't books available</p>
     @endforelse
 
     <div class="d-flex justify-content-center">

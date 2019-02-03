@@ -19,6 +19,9 @@ Route::get('/about', 'PagesController@about')->name('about');
 // Rutas para la entidad Books
 Route::resource('/books', 'BooksController');
 
+// Rutas para la entidad Books
+Route::resource('/publishers', 'PublishersController');
+
 // Ruta para libros de un user
 Route::get('user/{slug}/books', 'UsersBooksController@index');
 

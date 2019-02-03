@@ -37,7 +37,7 @@ class BookRequest extends FormRequest
             'title.min' => 'El :attribute debe tener al menos 3 caracteres',
             'author.required'=> 'El :attribute es requerido.',
             'author.min'    => 'El :attribute debe tener al menos 3 caracteres',
-            'description.required'=> 'La :attribute es requerida.',
+            'description.required'=> 'La :attribute es requerida.'
         ];
     }
 

@@ -7,6 +7,7 @@
     </div>
     @endif
 </div>
+
 <div class="form-group">
     <label for="author">Author</label>
     <input type="text" class="form-control {{ $errors->has('author')?"is-invalid":"" }}" id="author" name="author" placeholder="Introduce the book author" value="{{ isset($book)?$book->author:old('author') }}"required>
@@ -16,6 +17,15 @@
     </div>
     @endif
 </div>
+
+<div class="form-group">
+	<label for="publisher">Publisher</label>
+	<select id="publisher">
+		<option value="">- Choose a publisher -</option>
+	</select>
+	<a href="/publishers/create" class="btn btn-primary btn-sm ml-4">Create publisher</a>
+</div>
+
 <div class="form-group">
     <label for="description">Description</label>
     <textarea class="form-control {{ $errors->has('description')?"is-invalid":"" }}" id="description" name="description" rows="10" placeholder="Book Description" required>{{ isset($book)?$book->description:old('description') }}</textarea>

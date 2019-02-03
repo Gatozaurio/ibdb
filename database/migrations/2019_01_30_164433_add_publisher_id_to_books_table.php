@@ -14,7 +14,7 @@ class AddPublisherIdToBooksTable extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table->string('publisher_id')->after('user_id');
+			$table->integer('publisher_id')->unsigned()->after('user_id');
         });
     }
 
