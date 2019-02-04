@@ -25,6 +25,7 @@ class BookRequest extends FormRequest
     {
         return [
             'title'         => 'required|min:3',
+			'publisher' => 'required|exists:publishers,publisher_id',
             'author'        => ['required','min:3'],
             'description'    => 'required'
         ];

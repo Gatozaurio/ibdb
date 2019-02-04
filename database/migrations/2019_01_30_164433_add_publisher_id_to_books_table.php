@@ -15,6 +15,7 @@ class AddPublisherIdToBooksTable extends Migration
     {
         Schema::table('books', function (Blueprint $table) {
 			$table->integer('publisher_id')->unsigned()->after('user_id');
+			$table->foreign('publisher_id')->references('id')->on('publishers')->onDelete('cascade');
         });
     }
 
@@ -26,7 +27,7 @@ class AddPublisherIdToBooksTable extends Migration
     public function down()
     {
         Schema::table('books', function (Blueprint $table) {
-            $table-dropColumn('publisher_id');
+            $table->dropColumn('publisher_id');
         });
     }
 }

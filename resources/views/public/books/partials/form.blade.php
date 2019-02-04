@@ -22,8 +22,17 @@
 	<label for="publisher">Publisher</label>
 	<select id="publisher">
 		<option value="">- Choose a publisher -</option>
+		@foreach($publishers as $publisher)
+			<option value="{{ $publisher->id }}"
+				{{ $publisher->id==$book->publisher_id && $errors->isEmpty() ?"selected": ($publisher->id==old('publisher')?"selected":"") }}>{{ $publisher->name }}</option>
+		@endforeach
 	</select>
 	<a href="/publishers/create" class="btn btn-primary btn-sm ml-4">Create publisher</a>
+	@if( $errors->has('publisher') )
+    <div class="invalid-feedback">
+        {{ $errors->first('publisher') }}
+    </div>
+    @endif
 </div>
 
 <div class="form-group">

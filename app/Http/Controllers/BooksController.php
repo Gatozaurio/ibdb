@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Book;
-use App\Publishers;
+use App\Publisher;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
-use App\Http\Requests\PublisherRequest;
 
 class BooksController extends Controller
 {
@@ -36,11 +35,10 @@ class BooksController extends Controller
      */
     public function create()
     {
-		// $publishers = Publisher::all();
+		$publishers = Publisher::all();
 
-        // return view('public.books.create', ['publishers' => $publishers]);
-		return view('public.books.create');
-    }
+        return view('public.books.create', ['publishers' => $publishers]);
+	}
 
     /**
      * Store a newly created resource in storage.
@@ -52,7 +50,7 @@ class BooksController extends Controller
     {
         Book::create([
 			'user_id' =>  $request->user()->id,
-			'publisher_id' =>  $request->publisher()->id,
+			'publisher_id' =>  request('publisher'),
             'title' => request('title'),
             'slug' => str_slug(request('title'), "-"),
             'author' => request('author'),
@@ -83,7 +81,12 @@ class BooksController extends Controller
      */
     public function edit(Book $book)
     {
-        return view('public.books.edit', ['book' => $book]);
+		$publishers = Publisher::all();
+
+        return view('public.books.edit', [
+			'book' => $book,
+			'publishers' => $publishers
+		]);
     }
 
     /**
