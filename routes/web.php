@@ -25,6 +25,9 @@ Route::resource('/publishers', 'PublishersController');
 // Ruta para libros de un user
 Route::get('user/{slug}/books', 'UsersBooksController@index');
 
+// Ruta para validación del registro
+Route::post('/register/validate', 'Auth\RegisterController@validateUserAjax');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

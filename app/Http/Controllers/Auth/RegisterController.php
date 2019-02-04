@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserFormRequest;
-use App\Http\Request\UserAjaxFormRequest;
+use App\Http\Requests\UserAjaxFormRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -57,7 +57,7 @@ class RegisterController extends Controller
         ]);
     }
 
-	protected function validateUserAjax(UserAjaxFormRequest $request){
+	protected function validateUserAjax(\App\Http\Requests\UserAjaxFormRequest $request){
 		return array();
 	}
 
