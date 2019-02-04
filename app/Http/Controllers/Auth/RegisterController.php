@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserFormRequest;
+use App\Http\Request\UserAjaxFormRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -55,13 +57,17 @@ class RegisterController extends Controller
         ]);
     }
 
+	protected function validateUserAjax(UserAjaxFormRequest $request){
+		return array();
+	}
+
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  UserFormRequest $request
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(UserFormRequest $request)
     {
         return User::create([
             'name' => $data['name'],
