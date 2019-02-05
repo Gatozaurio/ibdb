@@ -20,14 +20,20 @@
 
 <div class="form-group">
 	<label for="publisher">Publisher</label>
-	<select id="publisher">
-		<option value="">- Choose a publisher -</option>
+	<select class="form-control" id="publisher" name="publisher">
 		@foreach($publishers as $publisher)
 			<option value="{{ $publisher->id }}"
-				{{ $publisher->id==$book->publisher_id && $errors->isEmpty() ?"selected": ($publisher->id==old('publisher')?"selected":"") }}>{{ $publisher->name }}</option>
+			@if( ! $errors->isEmpty() )
+				{{-- Aquí se entra cuando hay errores de validación --}}
+				{{ old('publisher')==$publisher->id?"selected":"" }}
+			@elseif( isset($book) )
+				{{-- Aquí se entra cuando carga el formulario de edición del libro --}}
+				{{ $publisher->id==$book->publisher_id?"selected":"" }}
+			@endif
+			>{{ $publisher->name}}</option>
 		@endforeach
 	</select>
-	<a href="/publishers/create" class="btn btn-primary btn-sm ml-4">Create publisher</a>
+	<a href="/publishers/create" target="_blank">Create publisher</a>
 	@if( $errors->has('publisher') )
     <div class="invalid-feedback">
         {{ $errors->first('publisher') }}

@@ -46,7 +46,7 @@ class PublishersController extends Controller
 			'email' => request('email')
         ]);
 
-        return redirect('/');
+        return redirect('/publishers');
     }
 
 	    /**

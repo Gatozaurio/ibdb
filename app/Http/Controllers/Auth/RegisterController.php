@@ -57,7 +57,7 @@ class RegisterController extends Controller
         ]);
     }
 
-	protected function validateUserAjax(\App\Http\Requests\UserAjaxFormRequest $request){
+	protected function validateUserAjax(UserAjaxFormRequest $request){
 		return array();
 	}
 
