@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\UserFormRequest;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\JsonResponse;
 
 class UserAjaxFormRequest extends UserFormRequest
@@ -21,17 +22,21 @@ class UserAjaxFormRequest extends UserFormRequest
 			$rules['name'] = $this->validarNombre();
 		}
 
+		if( $this->exists('email') ){
+			$rules['email'] = $this->validarEmail();
+		}
+
 		return $rules;
 
     }
 
-	protected function failedValidation($validator)
+	protected function failedValidation(Validator $validator)
 	{
 		// Devuelve los errores de validación
 		$errors = $validator->errors();
 		$response = new JsonResponse([
 			'name' => $errors->get('name'),
-			// 'email' => $errors->get('email')
+			'email' => $errors->get('email')
 		]);
 		throw new ValidationException($validator, $response);
 	}

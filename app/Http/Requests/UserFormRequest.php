@@ -26,23 +26,26 @@ class UserFormRequest extends FormRequest
 		$rules = array();
 
 		$rules['name'] = $this->validarNombre();
-		// $rules['email'] = $this->validarEmail();
+		$rules['email'] = $this->validarEmail();
 
         return $rules;
     }
 	public function messages()
 	{
 		$mensajesNombre = $this->mensajesNombre();
-		// $mensajesEmail = $this->mensajesEmail();
+		$mensajesEmail = $this->mensajesEmail();
 		$mensajes = array_merge(
 			$mensajesNombre,
-			// $mensajesEmail
+			$mensajesEmail
 		);
-		return mensajes;
+		return $mensajes;
 	}
 
 	protected function validarNombre(){
 		return 'required|string|max:10';
+	}
+	protected function validarEmail(){
+		return 'required|string|max:30';
 	}
 
 	protected function mensajesNombre(){
@@ -50,6 +53,14 @@ class UserFormRequest extends FormRequest
 		$mensajes["name.required"] = 'Introduzca el nombre';
 		$mensajes["name.string"] = 'Introduzca una cadena';
 		$mensajes["name.max"] = 'Supera el máximo';
+		return $mensajes;
+	}
+
+	protected function mensajesEmail(){
+		$mensajes = array();
+		$mensajes["email.required"] = 'Introduzca el nombre';
+		$mensajes["email.string"] = 'Introduzca una cadena';
+		$mensajes["email.max"] = 'Supera el máximo';
 		return $mensajes;
 	}
 }

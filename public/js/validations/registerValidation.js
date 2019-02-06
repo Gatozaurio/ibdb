@@ -98,6 +98,10 @@ document.addEventListener('DOMContentLoaded', function () {
   name.addEventListener('change', function () {
     validateName();
   });
+  var email = document.getElementById("email");
+  email.addEventListener('change', function () {
+    validateEmail();
+  });
 });
 
 function validateName() {
@@ -105,6 +109,16 @@ function validateName() {
     name: $("#name").val()
   }).then(function (response) {
     gestionarErrores($("#name"), response.data.name);
+  }).catch(function (error) {
+    console.log(error);
+  });
+}
+
+function validateEmail() {
+  axios.post('/register/validate', {
+    email: $("#email").val()
+  }).then(function (response) {
+    gestionarErrores($("#email"), response.data.name);
   }).catch(function (error) {
     console.log(error);
   });
